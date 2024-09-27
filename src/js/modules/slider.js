@@ -1,9 +1,9 @@
 export default class Slider {
 	constructor(page, btns) {
 		this.page = document.querySelector(page);
-		this.slides = this.page.childen;
+		this.slides = this.page.children;
 		this.btns = document.querySelectorAll(btns);
-		this.slideIndex = 0;
+		this.slideIndex = 3;
 	}
 
 	filterSlides(n) {
@@ -15,6 +15,8 @@ export default class Slider {
 			this.slideIndex = 0;
 		}
 
+		console.log(this.slides);
+
 		this.slides.forEach(item => {
 			item.style.display = "none";
 		});
@@ -22,7 +24,7 @@ export default class Slider {
 		this.slides[this.slideIndex].style.display = "block";
 	}
 
-	slideIncrement() {
-		
+	render() {
+		this.filterSlides(1);
 	}
 }
