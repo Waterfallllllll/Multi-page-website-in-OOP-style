@@ -22,7 +22,6 @@ export default class Slider {
 		this.slides[this.slideIndex].style.display = "block";
 	}
 
-
 	slideIncrement(n) {
 		return this.slideIndex += n;
 	}
