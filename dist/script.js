@@ -18,6 +18,13 @@ class PlayVideo {
     this.overlay = document.querySelector(overlay);
     this.close = this.overlay.querySelector(".close");
   }
+  closeButton() {
+    this.close.addEventListener("click", () => {
+      this.overlay.style.display = "none";
+      this.player.clearVideo();
+      this.player.destroy(); // Есть и другой метод удаления в видео
+    });
+  }
   triggerButton() {
     this.trigger.forEach(item => {
       item.addEventListener("click", () => {
@@ -39,63 +46,7 @@ class PlayVideo {
     const firstScriptTag = document.getElementsByTagName("script")[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     this.triggerButton();
-  }
-}
-
-/***/ }),
-
-/***/ "./src/js/modules/slider.js":
-/*!**********************************!*\
-  !*** ./src/js/modules/slider.js ***!
-  \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Slider)
-/* harmony export */ });
-class Slider {
-  constructor(page, btns) {
-    this.page = document.querySelector(page);
-    this.slides = this.page.children;
-    this.btns = document.querySelectorAll(btns);
-    this.slideIndex = 0;
-  }
-  filterSlides(n) {
-    if (n < 0) {
-      this.slideIndex = this.slides.length;
-    }
-    if (n > this.slides.length - 1) {
-      this.slideIndex = 0;
-    }
-    Array.from(this.slides).forEach(item => {
-      item.style.display = "none";
-    });
-    this.slides[this.slideIndex].style.display = "block";
-  }
-  slideIncrement(n) {
-    return this.slideIndex += n;
-  }
-  render() {
-    this.btns.forEach(item => {
-      item.addEventListener("click", () => {
-        Array.from(this.slides).forEach(item => {
-          item.classList.add("animated", "animate__fadeInUp");
-        });
-        this.filterSlides(this.slideIncrement(1));
-        if (this.slideIndex == 2) {
-          const teacher = document.querySelector(".hanson");
-          teacher.style.display = "none";
-          setTimeout(() => {
-            teacher.style.display = "block";
-            teacher.classList.add("animated", "animate__fadeInUp");
-          }, 3000);
-        }
-      });
-      item.parentElement.previousElementSibling.addEventListener("click", () => {
-        this.filterSlides(this.slideIndex = 0);
-      });
-    });
+    this.closeButton();
   }
 }
 
@@ -162,12 +113,12 @@ var __webpack_exports__ = {};
   !*** ./src/js/main.js ***!
   \************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/slider */ "./src/js/modules/slider.js");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './modules/slider'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 /* harmony import */ var _modules_playVideo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/playVideo */ "./src/js/modules/playVideo.js");
 
 
 window.addEventListener("DOMContentLoaded", () => {
-  const slider = new _modules_slider__WEBPACK_IMPORTED_MODULE_0__["default"](".page", ".next");
+  const slider = new Object(function webpackMissingModule() { var e = new Error("Cannot find module './modules/slider'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(".page", ".next");
   slider.filterSlides();
   slider.render();
   const video = new _modules_playVideo__WEBPACK_IMPORTED_MODULE_1__["default"](".showup .play", ".overlay");

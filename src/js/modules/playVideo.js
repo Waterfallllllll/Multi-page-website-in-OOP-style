@@ -5,6 +5,14 @@ export default class PlayVideo {
 		this.close = this.overlay.querySelector(".close");
 	}
 
+	closeButton() {
+		this.close.addEventListener("click", () => {
+			this.overlay.style.display = "none";
+			this.player.clearVideo();
+			this.player.destroy(); // Есть и другой метод удаления в видео
+		});
+	}
+
 	triggerButton() {
 		this.trigger.forEach(item => {
 			item.addEventListener("click", () => {
@@ -32,5 +40,6 @@ export default class PlayVideo {
 		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 		this.triggerButton();
+		this.closeButton();
 	}
 }
