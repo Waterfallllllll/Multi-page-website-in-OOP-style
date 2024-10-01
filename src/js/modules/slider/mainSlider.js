@@ -1,8 +1,9 @@
 import Slider from "./slider";
 
 export default class MainSlider extends Slider {
-	constructor(page, btns) {
-		super(page, btns);
+	constructor(object) {
+		//При попытке получить доступ к какому-либо свойству объекта, свойство вначале ищется в самом объекте, затем в прототипе объекта, после чего в прототипе прототипа, и так далее. Поиск ведётся до тех пор, пока не найдено свойство с совпадающим именем или не достигнут конец цепочки прототипов.
+		super(object);
 	}
 
 	filterSlides(n) {

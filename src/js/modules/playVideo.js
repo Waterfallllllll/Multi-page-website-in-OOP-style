@@ -6,6 +6,7 @@ export default class PlayVideo {
 	}
 
 	closeButton() {
+		
 		this.close.addEventListener("click", () => {
 			this.overlay.style.display = "none";
 			this.player.clearVideo();
@@ -14,6 +15,7 @@ export default class PlayVideo {
 	}
 
 	triggerButton() {
+
 		this.trigger.forEach(item => {
 			item.addEventListener("click", () => {
 				this.overlay.style.display = "flex";
