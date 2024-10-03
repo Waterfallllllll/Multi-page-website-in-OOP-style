@@ -10,10 +10,10 @@ window.addEventListener("DOMContentLoaded", () => {
 	const firstMiniSlider = new MiniSlider({ container: ".showup__content-slider", prev: ".showup__prev", next: ".showup__next",  activeClass: "card-active", animate: true});
 	firstMiniSlider.init();
 
-	const secondMiniSlider = new MiniSlider({ container: ".modules__content-slider", prev: ".slick-prev", next: ".slick-next", activeClass: "card-active", animate: true });
+	const secondMiniSlider = new MiniSlider({ container: ".modules__content-slider", prev: ".slick-prev", next: ".slick-next", activeClass: "card-active", animate: true, autoPlay: true });
 	secondMiniSlider.init();
 
-	const thirdMiniSlider = new MiniSlider({ container: ".feed__slider", prev: ".slick-prev", next: ".slick-next" });
+	const thirdMiniSlider = new MiniSlider({ container: ".feed__slider", prev: ".slick-prev", next: ".slick-next", activeClass: "feed__item-active"});
 	thirdMiniSlider.init();
 
 	const video = new PlayVideo(".showup .play", ".overlay");
