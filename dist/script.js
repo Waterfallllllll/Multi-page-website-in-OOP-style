@@ -119,9 +119,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ MiniSlider)
 /* harmony export */ });
-/* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slider */ "./src/js/modules/slider/slider.js");
+/* harmony import */ var _mainSlider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mainSlider */ "./src/js/modules/slider/mainSlider.js");
+/* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slider */ "./src/js/modules/slider/slider.js");
 
-class MiniSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
+
+class MiniSlider extends _slider__WEBPACK_IMPORTED_MODULE_1__["default"] {
   constructor(object) {
     super(object);
   }
@@ -199,9 +201,6 @@ class MiniSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
     this.container.style.cssText = "display: flex; flex-wrap: wrap; align-items: flex-start; overflow: hidden";
     this.bindTriggers();
     this.activeTrigger();
-    if (this.autoPlay) {
-      setInterval(() => this.nextSlider(), 5000);
-    }
   }
 }
 
@@ -320,7 +319,8 @@ window.addEventListener("DOMContentLoaded", () => {
     prev: ".showup__prev",
     next: ".showup__next",
     activeClass: "card-active",
-    animate: true
+    animate: true,
+    btns: ".next"
   });
   firstMiniSlider.init();
   const secondMiniSlider = new _modules_slider_miniSlider__WEBPACK_IMPORTED_MODULE_2__["default"]({

@@ -43,6 +43,8 @@ export default class MainSlider extends Slider {
 						teacher.style.display = "block";
 						teacher.classList.add("animated", "animate__fadeInUp");
 					}, 3000);
+
+					
 				}
 			});
 

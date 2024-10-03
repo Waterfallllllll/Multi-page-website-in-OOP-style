@@ -1,3 +1,4 @@
+import MainSlider from "./mainSlider";
 import Slider from "./slider";
 
 export default class MiniSlider extends Slider {
@@ -95,9 +96,5 @@ export default class MiniSlider extends Slider {
 		this.container.style.cssText = "display: flex; flex-wrap: wrap; align-items: flex-start; overflow: hidden";
 		this.bindTriggers();
 		this.activeTrigger();
-
-		if (this.autoPlay) {
-			setInterval(() => this.nextSlider(), 5000);
-		}
 	}
 }
