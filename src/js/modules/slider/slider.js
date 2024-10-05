@@ -10,6 +10,4 @@ export default class Slider {
 		this.animate = animate;
 		this.autoPlay = autoPlay;
 	}
-
-	
 }

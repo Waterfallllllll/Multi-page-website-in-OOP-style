@@ -2,6 +2,54 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/js/modules/differenceCards.js":
+/*!*******************************************!*\
+  !*** ./src/js/modules/differenceCards.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ DifferenceCards)
+/* harmony export */ });
+class DifferenceCards {
+  constructor(officerOld, officerNew, items) {
+    this.officerOld = document.querySelector(officerOld);
+    this.officerNew = document.querySelector(officerNew);
+    this.itemsOld = this.officerOld.querySelectorAll(items);
+    this.itemsNew = this.officerNew.querySelectorAll(items);
+    this.itemsOldCounter = 0;
+    this.itemsNewCounter = 0;
+  }
+  addCard(container, items, counter) {
+    container.querySelector(".plus").addEventListener("click", () => {
+      if (counter != items.length - 2) {
+        items[counter].style.display = "flex";
+        counter++;
+      } else {
+        items[counter].style.display = "flex";
+        items[items.length - 1].remove();
+      }
+    });
+  }
+  clearList(items) {
+    items.forEach((element, i, arr) => {
+      if (i != arr.length - 1) {
+        element.classList.add("animated", "fadeIn");
+        element.style.display = "none";
+      }
+    });
+  }
+  init() {
+    this.clearList(this.itemsOld);
+    this.clearList(this.itemsNew);
+    this.addCard(this.officerOld, this.itemsOld, this.itemsOldCounter);
+    this.addCard(this.officerNew, this.itemsNew, this.itemsNewCounter);
+  }
+}
+
+/***/ }),
+
 /***/ "./src/js/modules/playVideo.js":
 /*!*************************************!*\
   !*** ./src/js/modules/playVideo.js ***!
@@ -119,13 +167,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ MiniSlider)
 /* harmony export */ });
-/* harmony import */ var _mainSlider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mainSlider */ "./src/js/modules/slider/mainSlider.js");
-/* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slider */ "./src/js/modules/slider/slider.js");
+/* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slider */ "./src/js/modules/slider/slider.js");
 
-
-class MiniSlider extends _slider__WEBPACK_IMPORTED_MODULE_1__["default"] {
+class MiniSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(object) {
     super(object);
+    this.intervalId;
   }
   activeTrigger() {
     Array.from(this.slides).forEach(item => {
@@ -169,8 +216,24 @@ class MiniSlider extends _slider__WEBPACK_IMPORTED_MODULE_1__["default"] {
     });
   }
   bindTriggers() {
+    if (this.autoPlay) {
+      this.container.addEventListener("mouseover", () => {
+        clearInterval(this.intervalId);
+      });
+      this.container.addEventListener("mouseout", () => {
+        this.intervalId = setInterval(() => this.nextSlider(), 5000);
+      });
+    }
     this.next.forEach(item => {
       item.addEventListener("click", () => this.nextSlider());
+      if (this.autoPlay) {
+        item.addEventListener("mouseover", () => {
+          clearInterval(this.intervalId);
+        });
+        item.addEventListener("mouseout", () => {
+          this.intervalId = setInterval(() => this.nextSlider(), 5000);
+        });
+      }
     });
     this.prev.forEach(item => {
       item.addEventListener("click", () => {
@@ -195,12 +258,23 @@ class MiniSlider extends _slider__WEBPACK_IMPORTED_MODULE_1__["default"] {
           }
         });
       });
+      if (this.autoPlay) {
+        item.addEventListener("mouseover", () => {
+          clearInterval(this.intervalId);
+        });
+        item.addEventListener("mouseout", () => {
+          this.intervalId = setInterval(() => this.nextSlider(), 5000);
+        });
+      }
     });
   }
   init() {
     this.container.style.cssText = "display: flex; flex-wrap: wrap; align-items: flex-start; overflow: hidden";
     this.bindTriggers();
     this.activeTrigger();
+    if (this.autoPlay) {
+      this.intervalId = setInterval(() => this.nextSlider(), 5000);
+    }
   }
 }
 
@@ -304,6 +378,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_slider_mainSlider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/slider/mainSlider */ "./src/js/modules/slider/mainSlider.js");
 /* harmony import */ var _modules_playVideo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/playVideo */ "./src/js/modules/playVideo.js");
 /* harmony import */ var _modules_slider_miniSlider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/slider/miniSlider */ "./src/js/modules/slider/miniSlider.js");
+/* harmony import */ var _modules_differenceCards__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/differenceCards */ "./src/js/modules/differenceCards.js");
+
 
 
 
@@ -341,6 +417,7 @@ window.addEventListener("DOMContentLoaded", () => {
   thirdMiniSlider.init();
   const video = new _modules_playVideo__WEBPACK_IMPORTED_MODULE_1__["default"](".showup .play", ".overlay");
   video.init();
+  new _modules_differenceCards__WEBPACK_IMPORTED_MODULE_3__["default"](".officerold", ".officernew", ".officer__card-item").init();
 });
 /******/ })()
 ;

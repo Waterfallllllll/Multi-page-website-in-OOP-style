@@ -1,9 +1,9 @@
-import MainSlider from "./mainSlider";
 import Slider from "./slider";
 
 export default class MiniSlider extends Slider {
 	constructor(object) {
 		super(object);
+		this.intervalId;
 	}
 
 	activeTrigger() {
@@ -56,10 +56,31 @@ export default class MiniSlider extends Slider {
 		});
 	}
 
+
+
 	bindTriggers() {
+
+		if (this.autoPlay) {
+			this.container.addEventListener("mouseover", () => {
+				clearInterval(this.intervalId);
+			});
+
+			this.container.addEventListener("mouseout", () => {
+				this.intervalId = setInterval(() => this.nextSlider(), 5000);
+			});
+		}
 
 		this.next.forEach(item => {
 			item.addEventListener("click", () => this.nextSlider());
+
+			if (this.autoPlay) {
+				item.addEventListener("mouseover", () => {
+					clearInterval(this.intervalId);
+				});
+				item.addEventListener("mouseout", () => {
+					this.intervalId = setInterval(() => this.nextSlider(), 5000);
+				});
+			}
 		});
 
 		this.prev.forEach(item => {
@@ -89,6 +110,15 @@ export default class MiniSlider extends Slider {
 					}
 				});
 			});
+
+			if (this.autoPlay) {
+				item.addEventListener("mouseover", () => {
+					clearInterval(this.intervalId);
+				});
+				item.addEventListener("mouseout", () => {
+					this.intervalId = setInterval(() => this.nextSlider(), 5000);
+				});
+			}
 		});
 	}
 
@@ -96,5 +126,9 @@ export default class MiniSlider extends Slider {
 		this.container.style.cssText = "display: flex; flex-wrap: wrap; align-items: flex-start; overflow: hidden";
 		this.bindTriggers();
 		this.activeTrigger();
+
+		if (this.autoPlay) {
+			this.intervalId = setInterval(() => this.nextSlider(), 5000);
+		}
 	}
 }
