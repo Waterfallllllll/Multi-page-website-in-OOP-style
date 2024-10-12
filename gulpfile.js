@@ -4,8 +4,11 @@ const gulp = require("gulp");
 const webpack = require("webpack-stream");
 const browsersync = require("browser-sync");
 
-const dist = "./dist/";
+// const dist = "./dist/";
 // const dist = "/Applications/MAMP/htdocs/test"; // Ссылка на вашу папку на сервере
+// const dist = "D:/OSPanel/home/SecondAdvancedJsProject.local";
+const dist = "C:/OSPanel/home/MultiPageJsProject.local";
+
 
 gulp.task("copy-html", () => {
     return gulp.src("./src/*.html")

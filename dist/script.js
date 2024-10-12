@@ -50,6 +50,43 @@ class DifferenceCards {
 
 /***/ }),
 
+/***/ "./src/js/modules/form.js":
+/*!********************************!*\
+  !*** ./src/js/modules/form.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Form)
+/* harmony export */ });
+class Form {
+  constructor(form) {
+    this.form = document.querySelectorAll(form);
+  }
+  forms() {
+    this.form.forEach(item => {
+      item.addEventListener("submit", e => {
+        e.preventDefault();
+        const formData = new FormData(item);
+        this.getResources("../assets/question.php", formData).then(data => console.log(data)).catch(err => console.error(err));
+      });
+    });
+  }
+  async getResources(path, data) {
+    const res = await fetch(path, {
+      method: "POST",
+      body: data
+    });
+    if (!res.ok) {
+      throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+    }
+    return await res.text();
+  }
+}
+
+/***/ }),
+
 /***/ "./src/js/modules/playVideo.js":
 /*!*************************************!*\
   !*** ./src/js/modules/playVideo.js ***!
@@ -379,6 +416,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_playVideo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/playVideo */ "./src/js/modules/playVideo.js");
 /* harmony import */ var _modules_slider_miniSlider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/slider/miniSlider */ "./src/js/modules/slider/miniSlider.js");
 /* harmony import */ var _modules_differenceCards__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/differenceCards */ "./src/js/modules/differenceCards.js");
+/* harmony import */ var _modules_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/form */ "./src/js/modules/form.js");
+
 
 
 
@@ -418,6 +457,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const video = new _modules_playVideo__WEBPACK_IMPORTED_MODULE_1__["default"](".showup .play", ".overlay");
   video.init();
   new _modules_differenceCards__WEBPACK_IMPORTED_MODULE_3__["default"](".officerold", ".officernew", ".officer__card-item").init();
+  new _modules_form__WEBPACK_IMPORTED_MODULE_4__["default"](".form").forms();
 });
 /******/ })()
 ;
