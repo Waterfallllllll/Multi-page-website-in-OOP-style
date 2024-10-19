@@ -29,7 +29,7 @@ export default class MainSlider extends Slider {
 	render() {
 		this.btns.forEach(item => {
 			item.addEventListener("click", () => {
-				Array.from(this.slides).forEach(item => {
+				Array.from(this.slides).forEach((item, i, arr) => {
 					item.classList.add("animated", "animate__fadeInUp");
 				});
 

@@ -1,9 +1,16 @@
 export default class Form {
 	constructor(form) {
 		this.form = document.querySelectorAll(form);
+		this.inputs = document.querySelectorAll("input");
 		this.spinner = "../assets/img/spinner.gif";
 		this.ok = "../assets/img/ok.png";
 		this.fail = "../assets/img/fail.png";
+	}
+
+	clearInputs() {
+		this.inputs.forEach(item => {
+			item.value = "";
+		});
 	}
 
 	forms() {
@@ -19,20 +26,28 @@ export default class Form {
 				statusImg.style.marginTop = "20%";
 
 				const formData = new FormData(item);
+
+				item.style.display = "none";
+				item.parentNode.append(statusImg);
+				statusImg.setAttribute("src", this.spinner);
 				
 				this.getResources("../assets/question.php", formData)
 					.then((data) => {
 						console.log(data);
-						item.style.display = "none";
 						item.parentNode.append(statusImg);
 						statusImg.setAttribute("src", this.ok);
 					})
-					.catch(err => console.error(err))
+					.catch((err) => {
+						console.error(err);
+						item.parentNode.append(statusImg);
+						statusImg.setAttribute("src", this.fail);
+					 })
 					.finally(() => {
 						 setTimeout(() => {
 							statusImg.remove();
 							 item.style.display = "block";
-							item.classList.add("animated","fadeInUp");
+							 item.classList.add("animated", "fadeInUp");
+							 this.clearInputs();		
 						}, 2000);
 					});
 			});
