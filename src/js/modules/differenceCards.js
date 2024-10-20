@@ -3,33 +3,47 @@ export default class DifferenceCards {
 		
 		this.officerOld = document.querySelector(officerOld);
 		this.officerNew = document.querySelector(officerNew);
-		this.itemsOld = this.officerOld.querySelectorAll(items);
-		this.itemsNew = this.officerNew.querySelectorAll(items);
+
+		try {
+			this.itemsOld = this.officerOld.querySelectorAll(items);
+			this.itemsNew = this.officerNew.querySelectorAll(items);
+		} catch (e) {
+			
+		}
+
 		this.itemsOldCounter = 0;
 		this.itemsNewCounter = 0;
 	}
 
 	addCard(container, items, counter) {
 
-		container.querySelector(".plus").addEventListener("click", () => {
-			if (counter != items.length - 2) {
-				items[counter].style.display = "flex";
-				counter++;
-			} else {
-				items[counter].style.display = "flex";
-				items[items.length - 1].remove();
-			}
-		});
+		try {
+			container.querySelector(".plus").addEventListener("click", () => {
+				if (counter != items.length - 2) {
+					items[counter].style.display = "flex";
+					counter++;
+				} else {
+					items[counter].style.display = "flex";
+					items[items.length - 1].remove();
+				}
+			});
+		} catch (e) {
+			
+		}
 	}
 
 	clearList(items) {
 
-		items.forEach((element, i, arr) => {
-			if (i != arr.length - 1) {
-				element.classList.add("animated", "fadeIn");
-				element.style.display = "none";
-			} 
-		});
+		try {
+			items.forEach((element, i, arr) => {
+				if (i != arr.length - 1) {
+					element.classList.add("animated", "fadeIn");
+					element.style.display = "none";
+				} 
+			});
+		} catch (e) {
+			
+		}
 	}
 
 	init() {

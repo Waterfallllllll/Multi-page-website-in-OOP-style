@@ -123,12 +123,16 @@ export default class MiniSlider extends Slider {
 	}
 
 	init() {
-		this.container.style.cssText = "display: flex; flex-wrap: wrap; align-items: flex-start; overflow: hidden";
-		this.bindTriggers();
-		this.activeTrigger();
+		try {
+			this.container.style.cssText = "display: flex; flex-wrap: wrap; align-items: flex-start; overflow: hidden";
+			this.bindTriggers();
+			this.activeTrigger();
 
-		if (this.autoPlay) {
-			this.intervalId = setInterval(() => this.nextSlider(), 5000);
+			if (this.autoPlay) {
+				this.intervalId = setInterval(() => this.nextSlider(), 5000);
+			}
+		} catch (e) {
+			
 		}
 	}
 }
