@@ -10,6 +10,10 @@ window.addEventListener("DOMContentLoaded", () => {
 	slider.filterSlides();
 	slider.render();
 
+	const moduleSlider = new MainSlider({ container: ".moduleapp", btns: ".next" });
+	moduleSlider.filterSlides();
+	moduleSlider.render();
+
 	const firstMiniSlider = new MiniSlider({ container: ".showup__content-slider", prev: ".showup__prev", next: ".showup__next",  activeClass: "card-active", animate: true, btns: ".next"});
 	firstMiniSlider.init();
 

@@ -7,9 +7,9 @@ export default class MainSlider extends Slider {
 	}
 
 	filterSlides(n) {
-		try {
+		if (this.container) {
 			if (n < 0) {
-				this.slideIndex = this.slides.length;
+				this.slideIndex = Array.from(this.slides).length - 1;
 			}
 
 			if (n > this.slides.length - 1) {
@@ -21,8 +21,6 @@ export default class MainSlider extends Slider {
 			});
 
 			this.slides[this.slideIndex].style.display = "block";
-		} catch (e) {
-			
 		}
 	}
 
@@ -31,25 +29,30 @@ export default class MainSlider extends Slider {
 	}
 
 	render() {
-		try{
+		if (this.container) {
 			this.btns.forEach(item => {
 				item.addEventListener("click", () => {
+	
 					Array.from(this.slides).forEach((item, i, arr) => {
+						item.classList.remove("animate__fadeInLeft", "animate__fadeInRight");
 						item.classList.add("animated", "animate__fadeInUp");
 					});
 
+					
 					this.filterSlides(this.slideIncrement(1));
 
-					if (this.slideIndex == 2) {
-						const teacher = document.querySelector(".hanson");
-						teacher.style.display = "none";
+					try {
+						if (this.slideIndex == 2) {
+							const teacher = document.querySelector(".hanson");
+							teacher.style.display = "none";
 					
-						setTimeout(() => {
-							teacher.style.display = "block";
-							teacher.classList.add("animated", "animate__fadeInUp");
-						}, 3000);
-
-					
+							setTimeout(() => {
+								teacher.style.display = "block";
+								teacher.classList.add("animated", "animate__fadeInUp");
+							}, 3000);
+						}
+					} catch (e) {
+						
 					}
 				});
 
@@ -57,8 +60,32 @@ export default class MainSlider extends Slider {
 					this.filterSlides(this.slideIndex = 0);
 				});
 			});
-		} catch(e) {
 
+
+			document.querySelectorAll(".prevmodule").forEach(item => {
+				item.addEventListener("click", () => {
+
+					Array.from(this.slides).forEach((item, i, arr) => {
+						item.classList.remove("animate__fadeInLeft", "animate__fadeInUp");
+						item.classList.add("animated", "animate__fadeInRight");
+					});
+
+					this.filterSlides(this.slideIncrement(-1));
+				});
+			});
+
+			document.querySelectorAll(".nextmodule").forEach(item => {
+				item.addEventListener("click", (e) => {
+					e.stopPropagation();
+
+					Array.from(this.slides).forEach((item, i, arr) => {
+						item.classList.remove("animate__fadeInRight", "animate__fadeInUp");
+						item.classList.add("animated", "animate__fadeInLeft");
+					});
+
+					this.filterSlides(this.slideIncrement(1));
+				});
+			});
 		}
 	}
 }
