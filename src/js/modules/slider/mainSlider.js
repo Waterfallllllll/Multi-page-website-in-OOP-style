@@ -27,7 +27,7 @@ export default class MainSlider extends Slider {
 	slideIncrement(n) {
 		return this.slideIndex += n;
 	}
-
+	
 	render() {
 		if (this.container) {
 			this.btns.forEach(item => {
@@ -35,10 +35,14 @@ export default class MainSlider extends Slider {
 	
 					Array.from(this.slides).forEach((item, i, arr) => {
 						item.classList.remove("animate__fadeInLeft", "animate__fadeInRight");
+					});
+
+
+					Array.from(this.slides).forEach((item, i, arr) => {
 						item.classList.add("animated", "animate__fadeInUp");
 					});
 
-					
+
 					this.filterSlides(this.slideIncrement(1));
 
 					try {
@@ -67,6 +71,9 @@ export default class MainSlider extends Slider {
 
 					Array.from(this.slides).forEach((item, i, arr) => {
 						item.classList.remove("animate__fadeInLeft", "animate__fadeInUp");
+					});
+
+					Array.from(this.slides).forEach((item, i, arr) => {
 						item.classList.add("animated", "animate__fadeInRight");
 					});
 
@@ -80,6 +87,9 @@ export default class MainSlider extends Slider {
 
 					Array.from(this.slides).forEach((item, i, arr) => {
 						item.classList.remove("animate__fadeInRight", "animate__fadeInUp");
+					});
+
+					Array.from(this.slides).forEach((item, i, arr) => {
 						item.classList.add("animated", "animate__fadeInLeft");
 					});
 

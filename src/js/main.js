@@ -23,8 +23,8 @@ window.addEventListener("DOMContentLoaded", () => {
 	const thirdMiniSlider = new MiniSlider({ container: ".feed__slider", prev: ".slick-prev", next: ".slick-next", activeClass: "feed__item-active"});
 	thirdMiniSlider.init();
 
-	const video = new PlayVideo(".showup .play", ".overlay");
-	video.init();
+	new PlayVideo(".showup .play", ".overlay").init();
+	new PlayVideo(".module__wrapper .play", ".overlay").init();
 
 	new DifferenceCards(".officerold", ".officernew", ".officer__card-item").init();
 

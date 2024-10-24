@@ -222,6 +222,7 @@ class PlayVideo {
   triggerButton() {
     this.trigger.forEach(item => {
       item.addEventListener("click", () => {
+        this.activeBtn = btn;
         this.overlay.style.display = "flex";
         this.createPlayer(item.getAttribute("data-url"));
       });
@@ -231,7 +232,10 @@ class PlayVideo {
     this.player = new YT.Player("frame", {
       height: "360",
       width: "640",
-      videoId: `${url}`
+      videoId: `${url}`,
+      events: {
+        "onStateChange": this.onPlayerStateChange
+      }
     });
   }
   init() {
@@ -286,6 +290,8 @@ class MainSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
         item.addEventListener("click", () => {
           Array.from(this.slides).forEach((item, i, arr) => {
             item.classList.remove("animate__fadeInLeft", "animate__fadeInRight");
+          });
+          Array.from(this.slides).forEach((item, i, arr) => {
             item.classList.add("animated", "animate__fadeInUp");
           });
           this.filterSlides(this.slideIncrement(1));
@@ -308,6 +314,8 @@ class MainSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
         item.addEventListener("click", () => {
           Array.from(this.slides).forEach((item, i, arr) => {
             item.classList.remove("animate__fadeInLeft", "animate__fadeInUp");
+          });
+          Array.from(this.slides).forEach((item, i, arr) => {
             item.classList.add("animated", "animate__fadeInRight");
           });
           this.filterSlides(this.slideIncrement(-1));
@@ -318,6 +326,8 @@ class MainSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
           e.stopPropagation();
           Array.from(this.slides).forEach((item, i, arr) => {
             item.classList.remove("animate__fadeInRight", "animate__fadeInUp");
+          });
+          Array.from(this.slides).forEach((item, i, arr) => {
             item.classList.add("animated", "animate__fadeInLeft");
           });
           this.filterSlides(this.slideIncrement(1));
@@ -599,8 +609,8 @@ window.addEventListener("DOMContentLoaded", () => {
     activeClass: "feed__item-active"
   });
   thirdMiniSlider.init();
-  const video = new _modules_playVideo__WEBPACK_IMPORTED_MODULE_1__["default"](".showup .play", ".overlay");
-  video.init();
+  new _modules_playVideo__WEBPACK_IMPORTED_MODULE_1__["default"](".showup .play", ".overlay").init();
+  new _modules_playVideo__WEBPACK_IMPORTED_MODULE_1__["default"](".module__wrapper .play", ".overlay").init();
   new _modules_differenceCards__WEBPACK_IMPORTED_MODULE_3__["default"](".officerold", ".officernew", ".officer__card-item").init();
   new _modules_form__WEBPACK_IMPORTED_MODULE_4__["default"](".form").forms();
 });

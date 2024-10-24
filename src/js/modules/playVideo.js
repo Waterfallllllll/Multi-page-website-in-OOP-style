@@ -18,6 +18,8 @@ export default class PlayVideo {
 
 		this.trigger.forEach(item => {
 			item.addEventListener("click", () => {
+				this.activeBtn = btn;
+
 				this.overlay.style.display = "flex";
 				this.createPlayer(item.getAttribute("data-url"));
 			});
@@ -29,7 +31,10 @@ export default class PlayVideo {
 		this.player = new YT.Player("frame", {
 			height: "360",
 			width: "640",
-			videoId: `${url}`
+			videoId: `${url}`,
+			events: {
+				"onStateChange": this.onPlayerStateChange
+			}
 		});
 	}
 
