@@ -18,7 +18,7 @@ export default class PlayVideo {
 
 		this.trigger.forEach(item => {
 			item.addEventListener("click", () => {
-				this.activeBtn = btn;
+				this.activeBtn = item;
 
 				this.overlay.style.display = "flex";
 				this.createPlayer(item.getAttribute("data-url"));
