@@ -211,6 +211,7 @@ class PlayVideo {
     this.trigger = document.querySelectorAll(trigger);
     this.overlay = document.querySelector(overlay);
     this.close = this.overlay.querySelector(".close");
+    this.onPlayerStateChange = this.onPlayerStateChange.bind(this);
   }
   closeButton() {
     this.close.addEventListener("click", () => {
@@ -220,11 +221,17 @@ class PlayVideo {
     });
   }
   triggerButton() {
-    this.trigger.forEach(item => {
+    this.trigger.forEach((item, i) => {
+      const blockedBlock = item.closest(".module__video-item").nextElementSibling;
+      if (i % 2 == 0) {
+        blockedBlock.setAttribute("data-disabled", "true");
+      }
       item.addEventListener("click", () => {
-        this.activeBtn = item;
-        this.overlay.style.display = "flex";
-        this.createPlayer(item.getAttribute("data-url"));
+        if (item.closest(".module__video-item").getAttribute("data-disabled") !== "true") {
+          this.activeBtn = item;
+          this.overlay.style.display = "flex";
+          this.createPlayer(item.getAttribute("data-url"));
+        }
       });
     });
   }
@@ -237,6 +244,21 @@ class PlayVideo {
         "onStateChange": this.onPlayerStateChange
       }
     });
+  }
+  onPlayerStateChange(state) {
+    const blockedBlock = this.activeBtn.closest(".module__video-item").nextElementSibling;
+    const playBtn = this.activeBtn.querySelector("svg").cloneNode(true);
+    if (state.data == 0) {
+      const blockedBtn = blockedBlock.querySelector(".play__circle");
+      blockedBtn.classList.remove("closed");
+      blockedBlock.style.opacity = "1";
+      blockedBtn.querySelector("svg").remove();
+      blockedBtn.appendChild(playBtn);
+      blockedBlock.style.filter = "none";
+      blockedBlock.querySelector(".play__text").textContent = "play video";
+      blockedBlock.querySelector(".play__text").classList.remove("attention");
+      blockedBlock.setAttribute("data-disabled", "false");
+    }
   }
   init() {
     const tag = document.createElement("script");
