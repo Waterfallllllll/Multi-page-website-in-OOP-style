@@ -3,6 +3,8 @@ import PlayVideo from "./modules/playVideo";
 import MiniSlider from "./modules/slider/miniSlider";
 import DifferenceCards from "./modules/differenceCards";
 import Form from "./modules/form";
+import ShowInfo from "./modules/showInfo";
+import Download from "./modules/download";
 
 window.addEventListener("DOMContentLoaded", () => {
 
@@ -29,4 +31,8 @@ window.addEventListener("DOMContentLoaded", () => {
 	new DifferenceCards(".officerold", ".officernew", ".officer__card-item").init();
 
 	new Form(".form").forms();
+
+	new ShowInfo(".plus").init();
+
+	new Download(".download").init();
 });

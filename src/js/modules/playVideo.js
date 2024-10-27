@@ -18,14 +18,19 @@ export default class PlayVideo {
 	triggerButton() {
 
 		this.trigger.forEach((item, i) => {
-			const blockedBlock = item.closest(".module__video-item").nextElementSibling;
 
-			if (i % 2 == 0) {
-				blockedBlock.setAttribute("data-disabled", "true");
+			try {
+				const blockedBlock = item.closest(".module__video-item").nextElementSibling;
+
+				if (i % 2 == 0) {
+					blockedBlock.setAttribute("data-disabled", "true");
+				}
+			 } catch (e) {
+				
 			}
 			
 			item.addEventListener("click", () => {
-				if (item.closest(".module__video-item").getAttribute("data-disabled") !== "true") {
+				if (!item.closest(".module__video-item") || item.closest(".module__video-item").getAttribute("data-disabled") !== "true") {
 
 					this.activeBtn = item;
 					this.overlay.style.display = "flex";
