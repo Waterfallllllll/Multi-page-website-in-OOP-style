@@ -1,4 +1,4 @@
-# SecondAdvancedJsProject
+# Multi-page-website-in-OOP-style
 
 This project was created for personal practice in utilizing JavaScript classes and various additional technologies. Here you can find implementations of:
 1. slider
