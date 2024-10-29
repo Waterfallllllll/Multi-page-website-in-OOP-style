@@ -20,7 +20,7 @@ Eslint allows you to edit js code with comfort
 
 To use this project, you'll need to:
 
-Clone this project to your computer using the command (git clone https://github.com/Waterfallllllll/SecondAdvancedJsProject.git)
+Clone this project to your computer using the command (git clone https://github.com/Waterfallllllll/Multi-page-website-in-OOP-style.git)
 Next, download all npm packages. 
 
 ## Usage
