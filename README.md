@@ -1,31 +1,31 @@
 # Multi-page-website-in-OOP-style
 
-This project was created for personal practice in utilizing JavaScript classes and various additional technologies. Here you can find implementations of:
+Этот проект создан для личной практики работы с классами JavaScript и различными дополнительными технологиями. Здесь можно найти реализации:
 1. slider
 2. playVideo
 3. formsAjax
 4. download
 5. accordion
-## Technologies
+## Технологии
 
 #### Gulp
 
-The Gulp makes our work comfortable. In this case, I configured it to the webpack functionality, as well as to update the page when changing any file and used babel to work with older versions of the browser.
+Gulp делает работу удобной. В этом проекте он настроен на работу с webpack, обновляет страницу при изменении любого файла и использует Babel для поддержки старых версий браузеров.
 
 #### Eslint
 
-Eslint allows you to edit js code with comfort
+Eslint позволяет комфортно править JavaScript-код.
 
-## Installation
+## Установка
 
-To use this project, you'll need to:
+Чтобы использовать этот проект, нужно:
 
-Clone this project to your computer using the command (git clone https://github.com/Waterfallllllll/Multi-page-website-in-OOP-style.git)
-Next, download all npm packages. 
+Клонировать репозиторий на свой компьютер командой (git clone https://github.com/Waterfallllllll/Multi-page-website-in-OOP-style.git)
+Затем установить все npm-пакеты.
 
-## Usage
+## Использование
 
-To ensure the project runs smoothly, we need to start certain technologies:
+Чтобы проект работал корректно, нужно запустить определённые инструменты:
 
-If you wish to edit or add something, start gulp.
-You'll also need to have openserver for the submission of data from the modal windows to work. The openserver mimics the functioning of a real hosting environment.
+Если вы хотите что-то изменить или добавить, запустите gulp.
+Также понадобится OpenServer, чтобы отправка данных из модальных окон работала. OpenServer имитирует работу настоящего хостинга.
